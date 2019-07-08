@@ -32,6 +32,9 @@ RUN apt-get update \
 # Clean
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+VOLUME $ROOT_DIR/upload
+VOLUME $ROOT_DIR/plugins
+
 # Download and install Limesurvey
 # then Move content to Apache root folder
 RUN cd $ROOT_DIR \
@@ -42,7 +45,6 @@ COPY config.docker.php  $ROOT_DIR/application/config/
 
 COPY init.sh /init.sh
 
-VOLUME $ROOT_DIR/upload
 
 EXPOSE 80
 
